@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>mamber.html</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+	$.ajax({
+		// ajax get방식 요청
+		url:'queryTest?id=user1&pwd=20&name=홍길동',
+		success: function(){
+			
+		},
+		error: function(){
+			
+		}
+	})
+</script>
+<body>
+	<h3>회원정보</h3>
+	<form action='queryTest' method="POST">
+		ID :<input type="text" name="id"><br> 비밀번호 :<input
+			type="password" name="pwd" id="pwd"><br> 이름 :<input
+			type="text" name="name" id="name"><br> 취미 :<input
+			type="checkbox" name="hobby" value="climbing">등산 <input
+			type="checkbox" name="hobby" value="sport">운동 <input
+			type="checkbox" name="hobby" value="reading">독서 <input
+			type="checkbox" name="hobby" value="traveing">여행<br> 성별
+		: <input type="radio" name="gender" value="male" checked>남자 <input
+			type="radio" name="gender" value="female">여자 종교 : <select
+			name="religion">
+			<option value="Christianity">기독교
+			<option value="Buddhism">불교
+			<option value="Catholicism">천주교
+			<option value="atheism">무교
+		</select><br /> 자기소개 : </br>
+		<textarea cols="30" rows="10" name="instroduction"></textarea>
+		<br /> <input type="submit" value="전송" /> <input type="reset"
+			value="지우기" />
+	</form>
+	<!-- a tag는 따로요정하지않아도 get방식 -->
+	<a href='queryTest?id=user1&pwd=20&name=가비&hobby=reading&hobby=sport'>Query
+		Test</a>
+</body>
+
+</html>

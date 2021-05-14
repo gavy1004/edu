@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class MemberDAO {
 	Connection conn;
 	PreparedStatement psmt = null;
@@ -36,7 +37,7 @@ public class MemberDAO {
 		try {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
-			
+
 			while (rs.next()) {
 				Member mem = new Member();
 				mem.setMemberAge(rs.getInt("member_age"));
@@ -45,7 +46,7 @@ public class MemberDAO {
 				mem.setMemberPwd(rs.getString("member_pwd"));
 				list.add(mem);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -88,4 +89,41 @@ public class MemberDAO {
 			close();
 		}
 	}
+
+	public Member checkInfo(String id, String pwd) {
+		// id, pwd 조회 값이 있으면 조회 -> Member에 리턴 return memger;
+		String sql = "select * from member where MEMBER_ID=? and member_pwd=?";
+		Member mem = new Member();
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			psmt.setString(2, pwd);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				mem.setMemberName(rs.getString("Member_name"));
+				mem.setMemberAge(rs.getInt("member_age"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				psmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return mem;
+
+	}
+
 }

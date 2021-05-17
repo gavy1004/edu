@@ -9,6 +9,6 @@
 <body>
 <h1>inClude 지시자 사용</h1>
 
-<%@ include file="copyright.jsp"%>
+<%@ include file="example05.jsp"%>
 </body>
 </html>
